@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Keiron Coolen COMP 272 Section 001 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -10,10 +10,9 @@
  *  - twoSums
  */
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 class HashingProblems {
 
@@ -40,9 +39,24 @@ class HashingProblems {
          * returning 0.0 is NOT correct, as that is not the average value. Whereas
          * returning 0.0/0.0 IS correct (which would return a non-number).
          */
-
-         return 0.0 / 0.0;
-  }
+        // Two variables to track the sum of the values and the count of matching keys
+        double sum  = 0.0;
+        int count = 0;
+        /*
+            The array is traversed 
+            If the key matches,
+            The value from the HashMap is added to the sum
+            The count is incremented as well
+        */
+        for (int i = 0; i < array.length;i++) {
+            if (map.containsKey(array[i])) {
+                sum += map.get(array[i]);
+                count++;
+            }
+        }
+        // If count is zero, sum/count will return 0.0/0.0
+        return sum / count;
+    }
 
 
     /*
@@ -61,9 +75,17 @@ class HashingProblems {
        *
        * Hint: Consider iterating over the HashMap using the keySet method.
        */
-
-
-      return result;
+    /*
+        Traverse the set of keys
+        If the key is odd, it is added to the ArrayList
+    */
+    for (Integer k: map.keySet()) {
+        if (k % 2 != 0) {
+            result.add(map.get(k));
+        }
+    }
+    // The ArrayList is returned at the end
+    return result;
   }
 
 
@@ -109,8 +131,24 @@ class HashingProblems {
       /*
        * ADD YOUR CODE HERE
        */
-
-      return -1;
-  }
+    // Will store the numbers in HashSet
+    HashSet<Integer> numHashSet = new HashSet<>();
+    // Counter for number of times k appears
+    int number = 0;
+        /*
+            Loop to traverse array
+            Look for the other number used to get k using the current number 'num'
+            If the other number is present, the counter 'number' is incremented
+            The number in the array is added to the set
+        */
+        for (int num : numbers) {
+            if (numHashSet.contains(num - k)) {
+                number++;
+            }
+            numHashSet.add(num);
+        }
+        // Return counter
+        return number;
+    }
 
 } /* end class HashingProblems */
